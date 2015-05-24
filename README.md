@@ -6,7 +6,7 @@ This is unofficial PHP sdk for [Textocat](http://textocat.com).
 
 # Dependencies
 
-No seriouse dependencies, but wrappers need some pretty ways to make<br>
+No serious dependencies, but wrappers need some pretty ways to make<br>
 HTTP requests, so tiny Qweb\Request lies in.
 
 # Installation
@@ -36,6 +36,6 @@ ready and only when return the control among with result.<br>
 
 Above code snippet + one advanced script can be found at: [examples](./examples)
 
-## TODO/ADD
+### TODO/ADD
   `tests`
   `package`
