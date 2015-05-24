@@ -61,6 +61,8 @@ Methods:
     * `GET|search` supported via Client instance
   * `Service`
     * `GET|status` supported via Service static methods
+
+<br>
 `100%`
 
 ### TODO/ADD
