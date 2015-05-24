@@ -60,7 +60,7 @@ Methods:
     * `GET|retrieve` both multiple and single versions supported
     * `GET|search` not supported yet
   * `Service`
-    * `GET|status` not supported yet
+    * `GET|status` supported via Service static methods
 
 ### TODO/ADD
   `tests`

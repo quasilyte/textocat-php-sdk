@@ -44,7 +44,11 @@ class Client {
     }
   }
 
-  public function authJsonRequest() {
+  /*
+   * Private:
+   */
+
+  private function authJsonRequest() {
     return (new JsonRequest(Textocat::resource('entity/')))
       ->getParamAdd(['auth_token' => $this->apiKey]);
   }
