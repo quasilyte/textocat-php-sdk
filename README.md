@@ -35,6 +35,21 @@ Sync methods just execute an request, checking while it is<br>
 ready and only when return the control among with result.<br>
 
 Above code snippet + one advanced script can be found at: [examples](./examples)
+<br>
+**Bonus!**
+```php
+$client = \TextocatSDK\Http\Client(API_KEY);
+
+$doc1 = \TextocatSDK\Document(file_get_contents('some input file1'));
+$doc2 = \TextocatSDK\Document(file_get_contents('some input file2'));
+
+// It is better to always pass an array, but when there is only one
+// document in a batch, we want a syntactic sugar.
+$batch1 = $client->batch($doc1)->queue()->sync();
+$batch2 = $client->batch([$doc2])->queue()->sync();
+
+var_dump($client->retrieveAll([$batch1, $batch2]);
+```
 
 ### TODO/ADD
   `tests`
