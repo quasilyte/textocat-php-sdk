@@ -35,7 +35,7 @@ Sync methods just execute an request, checking while it is<br>
 ready and only when return the control among with result.<br>
 
 Above code snippet + one advanced script can be found at: [examples](./examples)
-<br>
+<hr>
 **Bonus!**
 ```php
 $client = \TextocatSDK\Http\Client(API_KEY);
