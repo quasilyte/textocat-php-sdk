@@ -11,6 +11,6 @@ class JsonRequest extends Request {
   protected $dataEncFn = 'json_encode';
 
   public function send($extraPath = '', $javishArrays = false) {
-    return json_decode(parent::send($extraPath, $javishArrays), true);
+    return json_decode(parent::send($extraPath, $javishArrays)->body, true);
   }
 }

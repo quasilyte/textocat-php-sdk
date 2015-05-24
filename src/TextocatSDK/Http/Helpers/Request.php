@@ -4,6 +4,7 @@ namespace TextocatSDK\Http\Helpers;
 
 class Request {
   protected $url;
+
   protected $header = [];
 
   protected $getParams = [];
@@ -47,13 +48,14 @@ class Request {
 
   public function send($extraPath = '', $javishArrays = false) {
     $url = $this->urlWithParams($extraPath);
+    $url = $javishArrays ? preg_replace('/%5B\d+%5D=/', '=', $url) : $url;
 
-    return file_get_contents(
-      $javishArrays ? preg_replace('/%5B[0-9]+%5D=/', '=', $url) : $url,
-      false,
-      $this->streamCtx()
+    return new Response(
+      file_get_contents($url, false, $this->streamCtx()),
+      $http_response_header
     );
   }
+
 
   public function sendJavish($extraPath = '') {
     return $this->send($extraPath, true);
@@ -62,6 +64,10 @@ class Request {
   public function urlWithParams($extraPath = '') {
     return $this->url . $extraPath . '?' . http_build_query($this->getParams);
   }
+
+  /*
+   * Protected:
+   */
 
   protected function streamCtx() {
     return stream_context_create([
