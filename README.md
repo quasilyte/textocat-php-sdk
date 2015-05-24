@@ -55,12 +55,13 @@ var_dump($client->retrieveAll([$batch1, $batch2]);
 
 Methods:
   * `Entity`
-    * `POST|queue` supported
-    * `GET|request` supported
-    * `GET|retrieve` both multiple and single versions supported
-    * `GET|search` not supported yet
+    * `POST|queue` supported via Batch instance
+    * `GET|request` supported via Batch instance
+    * `GET|retrieve` supported via Client and Batch instances
+    * `GET|search` supported via Client instance
   * `Service`
     * `GET|status` supported via Service static methods
+`100%`
 
 ### TODO/ADD
   `tests`

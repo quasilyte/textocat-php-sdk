@@ -44,6 +44,12 @@ class Client {
     }
   }
 
+  public function search($query) {
+    return $this->authJsonRequest()
+      ->getParamAdd(['search_query' => $query])
+      ->send('search');
+  }
+
   /*
    * Private:
    */
