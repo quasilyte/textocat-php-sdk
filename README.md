@@ -51,6 +51,17 @@ $batch2 = $client->batch([$doc2])->queue()->sync();
 var_dump($client->retrieveAll([$batch1, $batch2]);
 ```
 
+### Conformity with Textocat API 0.3
+
+Methods:
+  * `Entity`
+    * `POST|queue` supported
+    * `GET|request` supported
+    * `GET|retrieve` both multiple and single versions supported
+    * `GET|search` not supported yet
+  * `Service`
+    * `GET|status` not supported yet
+
 ### TODO/ADD
   `tests`
   `package`
