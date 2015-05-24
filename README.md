@@ -4,9 +4,14 @@ This is unofficial PHP sdk for [Textocat](http://textocat.com).
 
 [Textocat API](http://docs.textocat.com/).
 
+# Dependencies
+
+No seriouse dependencies, but wrappers need some pretty ways to make<br>
+HTTP requests, so tiny Qweb\Request lies in.
+
 # Installation
 
-@TODO: add package to pear.
+@TODO: add package to pear or composer.
 
 # Usage
 
@@ -22,9 +27,15 @@ $result = (new KittyClient(API_KEY))->batch(\TextocatSDK\Document(
 var_dump($result);
 ```
 
-[examples](./examples)
+Overall, to manipulate single Batch, use its methods;<br>
+when it is time to collect multiple batches, use Client methods.<br>
+<br>
+There ary sync and non-locking types of methods.<br>
+Sync methods just execute an request, checking while it is<br>
+ready and only when return the control among with result.<br>
+
+Above code snippet + one advanced script can be found at: [examples](./examples)
 
 ## TODO/ADD
-  `exceptions`
   `tests`
-  `pear`
+  `package`
