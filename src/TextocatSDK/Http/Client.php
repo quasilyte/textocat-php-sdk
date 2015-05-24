@@ -22,12 +22,24 @@ class Client {
     );
   }
 
-  public function retrieve(array $batches) {
+  public function retrieveAll(array $batches) {
     return $this->authJsonRequest()
       ->getParamAdd(['batch_id' => array_map(function($batch) {
         return $batch->id();
       }, $batches)])
       ->sendJavish('retrieve', true);
+  }
+
+  public function syncRetrieveAll(array $batches, $delay = Textocat::DELAY) {
+    $this->syncAll($batches, $delay);
+
+    return $this->retrieveAll($batches);
+  }
+
+  public function syncAll(array $batches, $delay = Textocat::DELAY) {
+    foreach($batches as $batch) {
+      $batch->sync($delay);
+    }
   }
 
   public function authJsonRequest() {

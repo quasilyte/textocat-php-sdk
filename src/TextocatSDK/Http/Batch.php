@@ -2,6 +2,8 @@
 
 namespace TextocatSDK\Http;
 
+use TextocatSDK\Textocat;
+
 class Batch {
   private $rq;
   private $docs;
@@ -31,14 +33,14 @@ class Batch {
     return $this;
   }
 
-  public function syncQueue($delay = 250000) {
+  public function syncRetrieve($delay = Textocat::DELAY) {
     $this->queue();
     $this->sync($delay);
 
     return $this->isFinished() ? $this->retrieve() : false;
   }
 
-  public function sync($delay) {
+  public function sync($delay = Textocat::DELAY) {
     do {
       usleep($delay);
       $this->request();

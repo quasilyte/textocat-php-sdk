@@ -3,9 +3,10 @@
 namespace TextocatSDK;
 
 class Textocat {
-  public static $serviceUrl = 'http://api.textocat.com/';
+  const SERVICE_URL = 'http://api.textocat.com/';
+  const DELAY = 100000;
 
   public static function resource($resource) {
-    return self::$serviceUrl . $resource;
+    return self::SERVICE_URL . $resource;
   }
 }

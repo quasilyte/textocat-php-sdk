@@ -18,7 +18,7 @@ $doc2 = \TextocatSDK\Document('
 $batch = $client->batch([$doc1, $doc2]);
 
 // Обёртка для блокирующего получения ответа:
-$syncRes1 = $batch->syncQueue();
+$syncRes1 = $batch->syncRetrieve();
 // Или:
 $batch->queue();
 $batch->sync(50000);
@@ -45,9 +45,11 @@ $delayedRes2 = $batch->retrieve();
 // Подготовим второй Batch и завершённых коллекций станет две.
 $batch2 = $client->batch(
   \TextocatSDK\Document('Yet another perl hacker')
-)->queue()->sync(50000);
+)->queue(); // ->sync(50000); Мы можем производить синхронизацию здесь или...
 
 // Забираем обе коллекции:
-$both = $client->retrieve([$batch, $batch2]);
+$both = $client->syncRetrieveAll([$batch, $batch2]); // ...здесь.
+// Если бы мы вызвали ->sync(50000), тогда вместо syncRetrieveAll
+// стоило бы воспользоваться ->retrieveAll([$batch, $batch2])
 
 var_dump($both);
