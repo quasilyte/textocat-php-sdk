@@ -3,7 +3,7 @@
 namespace TextocatSDK\Http;
 
 use TextocatSDK\Textocat;
-use \TextocatSDK\Http\Helpers\JsonRequest;
+use Qweb\Request\JsonRequest;
 
 class Client {
   private $apiKey;
@@ -13,6 +13,8 @@ class Client {
    */
 
   public function __construct($apiKey) {
+    Textocat::init();
+
     $this->apiKey = $apiKey;
   }
 

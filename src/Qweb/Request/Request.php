@@ -1,6 +1,6 @@
 <?php
 
-namespace TextocatSDK\Http\Helpers;
+namespace Qweb\Request;
 
 class Request {
   protected $url;
@@ -11,6 +11,10 @@ class Request {
   protected $postParams = [];
 
   protected $dataEncFn = 'http_build_query';
+
+  /*
+   * Public:
+   */
 
   public function __construct($url) {
     $this->url = $url;
@@ -51,7 +55,7 @@ class Request {
     $url = $javishArrays ? preg_replace('/%5B\d+%5D=/', '=', $url) : $url;
 
     return new Response(
-      file_get_contents($url, false, $this->streamCtx()),
+      @file_get_contents($url, false, $this->streamCtx()),
       $http_response_header
     );
   }

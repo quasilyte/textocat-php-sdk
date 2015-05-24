@@ -1,6 +1,6 @@
 <?php
 
-namespace TextocatSDK\Http\Helpers;
+namespace Qweb\Request;
 
 class JsonRequest extends Request {
   protected $header = [
