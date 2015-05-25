@@ -67,4 +67,5 @@ Methods:
 
 ### TODO/ADD
   `tests`
-  `package`
+  `package distribution`
+  `pecl_http alternative to qweb\http`
