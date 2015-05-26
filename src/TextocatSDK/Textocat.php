@@ -7,6 +7,7 @@ use Qweb\Request\Response;
 class Textocat {
   const SERVICE_URL = 'http://api.textocat.com/';
   const DELAY = 100000;
+  const BATCH_MAX_SIZE = 50;
 
   private static $initialized = false;
 

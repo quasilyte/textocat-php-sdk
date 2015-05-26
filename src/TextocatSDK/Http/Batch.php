@@ -16,6 +16,10 @@ class Batch {
    */
 
   public function __construct(array $docs, $request) {
+    if(count($docs) > Textocat::BATCH_MAX_SIZE) {
+      throw new Exception("Max batch size is ".Textocat::BATCH_MAX_SIZE);
+    }
+
     $this->docs = $docs;
     $this->rq = $request;
   }
