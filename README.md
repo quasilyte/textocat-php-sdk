@@ -1,28 +1,47 @@
 # Unofficial Textocat PHP SDK
 
 This is unofficial PHP sdk for [Textocat](http://textocat.com).
+It is lazily maintained and recommended as an example of usage,<br>
+but not supposed to be used as an backbone for real app.<br>
+<br>
+License? BSD, I guess.
 
 [Textocat API](http://docs.textocat.com/).
 
 # Dependencies
 
 No serious dependencies, but wrappers need some pretty ways to make<br>
-HTTP requests, so tiny Qweb\Request lies in.
+HTTP requests, so tiny Qweb\Request lies in.<br>
+In current implementation it is not a trivial task to change this<br>
+library because code is hardly bound to it. Going to change that one day.
 
 # Installation
 
-@TODO: add package to pear or composer.
+Easy with `Composer':
+``
 
 # Usage
 
 ```php
-use \TextocatSDK\Http\Client as KittyClient;
+<?php
 
-$result = (new KittyClient(API_KEY))->batch(\TextocatSDK\Document(
+// Say you already installed `textocat-php-sdk' via `composer'
+// then next line is sufficient to have all classes ready to be loaded.
+require "./vendor/autoload.php";
+
+use \TextocatSDK\Http\Client as KittyClient;
+use \TextocatSDK\Textocat as Kitty;
+
+// Shortest way possible:
+$result = (new KittyClient('23026a11-5a28-4c05-a57c-76e17e642329'))->batch(Kitty::Document(
   'Председатель совета директоров ОАО «МДМ Банк» Олег Вьюгин — о том, чему
    приведет обмен санкциями между Россией и Западом в следующем году.
    Беседовала Светлана Сухова.'
 ))->syncRetrieve();
+
+// * Create client instance; it must know your `auth_token'
+// * Instantiate a batch from client with single document (50 is max)
+// * Launch blocking `retrieve' method to receive results
 
 var_dump($result);
 ```
@@ -36,15 +55,21 @@ ready and only when return the control among with result.<br>
 
 Above code snippet + one advanced script can be found at: [examples](./examples)
 <hr>
-**Bonus!**
 ```php
-$client = \TextocatSDK\Http\Client(API_KEY);
+<?php
 
-$doc1 = \TextocatSDK\Document(file_get_contents('some input file1'));
-$doc2 = \TextocatSDK\Document(file_get_contents('some input file2'));
+require "./vendor/autoload.php";
+
+use \TextocatSDK\Http\Client;
+use \TextocatSDK\Textocat;
+
+$client = Client(API_KEY);
+
+$doc1 = Textocat::document(file_get_contents('some input file1'));
+$doc2 = Textocat::document(file_get_contents('some input file2'));
 
 // It is better to always pass an array, but when there is only one
-// document in a batch, we want a syntactic sugar.
+// document in a batch, we want a syntactic sugar (and you got it!):
 $batch1 = $client->batch($doc1)->queue()->sync();
 $batch2 = $client->batch([$doc2])->queue()->sync();
 
@@ -64,8 +89,3 @@ Methods:
 
 <br>
 `100%`
-
-### TODO/ADD
-  `tests`
-  `package distribution`
-  `pecl_http alternative to qweb\http`

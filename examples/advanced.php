@@ -1,30 +1,37 @@
 <?php
 
-require_once './inc.php';
+// Assumption: you included autoloader.
 
 use \TextocatSDK\Http\Client as KittyClient;
-
-$doc1 = \TextocatSDK\Document('Сурки, в атаку!');
+use \TextocatSDK\Textocat as Kitty;
 
 $client = new KittyClient(API_KEY);
 
-// Документ с тегом:
-$doc2 = \TextocatSDK\Document('
+$doc1 = Textocat::document('Сурки, в атаку!');
+
+// Document with tag:
+$doc2 = Textocat::document('
   Председатель совета директоров ОАО «МДМ Банк»
   Олег Вьюгин — о том, чему приведет обмен санкциями между Россией и Западом
   в следующем году. Беседовала Светлана Сухова.
 ', '@important');
 
+// It is perfectly fine to declare document like that:
+$doc3 = [
+  'text' => 'Ещё одна конференция мёртвого языка программирования Perl.',
+  'tag' => 'taggy-o'
+];
+
 $batch = $client->batch([$doc1, $doc2]);
 
-// Обёртка для блокирующего получения ответа:
+// Send request and wait for result, then save it into `syncRes1':
 $syncRes1 = $batch->syncRetrieve();
-// Или:
+// Or:
 $batch->queue();
 $batch->sync(50000);
 $syncRes2 = $batch->retrieve();
 
-// Ручное управление:
+// Manually control everything:
 $batch->queue();
 sleep(1);
 if($batch->request()) {
@@ -32,24 +39,24 @@ if($batch->request()) {
 } else {
   $delayedRes1 = 'not finished yet...';
 }
-// Или:
+// Or:
 $batch->queue();
 do {
   usleep(50000);
-  // Обновляем статус пакета документов.
+  // Updating the collection status.
   $batch->request();
 } while($batch->isInProgress());
 $delayedRes2 = $batch->retrieve();
 
-// Можно запрашивать результаты с нескольких Batch за один раз.
-// Подготовим второй Batch и завершённых коллекций станет две.
+// It is possible to retrieve results from multiple batches.
+// Let us prepare second batch.
 $batch2 = $client->batch(
   \TextocatSDK\Document('Yet another perl hacker')
-)->queue(); // ->sync(50000); Мы можем производить синхронизацию здесь или...
+)->queue(); // ->sync(50000); Sync here...
 
-// Забираем обе коллекции:
-$both = $client->syncRetrieveAll([$batch, $batch2]); // ...здесь.
-// Если бы мы вызвали ->sync(50000), тогда вместо syncRetrieveAll
-// стоило бы воспользоваться ->retrieveAll([$batch, $batch2])
+// Fetch both collections:
+$both = $client->syncRetrieveAll([$batch, $batch2]); // ...or here.
+// If we call `sync(50000)', then instead of invoking `syncRetrieveAll'
+// we would better use `retrieveAll' because of lower overhead.
 
 var_dump($both);

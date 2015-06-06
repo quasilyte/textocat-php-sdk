@@ -1,6 +1,6 @@
 <?php
 
-require_once './inc.php';
+// Assumption: you included autoloader.
 
 use \TextocatSDK\Http\Client as KittyClient;
 

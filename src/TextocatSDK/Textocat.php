@@ -12,7 +12,7 @@ class Textocat {
   private static $initialized = false;
 
   /*
-   * Public;
+   * Public:
    */
 
   public static function resource($resource) {
@@ -25,6 +25,10 @@ class Textocat {
 
       self::$initialized = true;
     }
+  }
+
+  public static function document($text, $tag = '') {
+    return ['text' => $text, 'tag' => $tag];
   }
 
   /*
