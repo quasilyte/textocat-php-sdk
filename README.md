@@ -50,7 +50,7 @@ var_dump($result);
 Overall, to manipulate single Batch, use its methods;<br>
 when it is time to collect multiple batches, use Client methods.<br>
 <br>
-There ary sync and non-locking types of methods.<br>
+There are sync and non-locking types of methods.<br>
 Sync methods just execute an request, checking while it is<br>
 ready and only when return the control among with result.<br>
 
