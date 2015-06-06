@@ -18,7 +18,7 @@ library because code is hardly bound to it. Going to change that one day.
 
 # Installation
 
-Easy with `Composer':<br>
+Easy with Composer:<br>
 `composer require 'quasilyte/textocat-php-sdk:dev-master'`
 
 # Usage
@@ -34,7 +34,7 @@ use \TextocatSDK\Http\Client as KittyClient;
 use \TextocatSDK\Textocat as Kitty;
 
 // Shortest way possible:
-$result = (new KittyClient('23026a11-5a28-4c05-a57c-76e17e642329'))->batch(Kitty::Document(
+$result = (new KittyClient('--API KEY--'))->batch(Kitty::Document(
   'Председатель совета директоров ОАО «МДМ Банк» Олег Вьюгин — о том, чему
    приведет обмен санкциями между Россией и Западом в следующем году.
    Беседовала Светлана Сухова.'
