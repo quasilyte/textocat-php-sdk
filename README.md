@@ -1,11 +1,12 @@
 # Unofficial Textocat PHP SDK
 
-This is unofficial PHP sdk for [Textocat](http://textocat.com).
+This is unofficial PHP sdk for [Textocat](http://textocat.com).<br>
 It is lazily maintained and recommended as an example of usage,<br>
 but not supposed to be used as an backbone for real app.<br>
 <br>
 License? BSD, I guess.
 
+Link below contains a list of currently provided methods by Textocat:<br>
 [Textocat API](http://docs.textocat.com/).
 
 # Dependencies
@@ -17,8 +18,8 @@ library because code is hardly bound to it. Going to change that one day.
 
 # Installation
 
-Easy with `Composer':
-``
+Easy with `Composer':<br>
+`composer require 'quasilyte/textocat-php-sdk:dev-master'`
 
 # Usage
 
