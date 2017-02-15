@@ -1,3 +1,8 @@
+# WARNING
+
+This sdk is not maintained and based on the really old API.
+Do not use this.
+
 # Unofficial Textocat PHP SDK
 
 This is unofficial PHP sdk for [Textocat](http://textocat.com).<br>
